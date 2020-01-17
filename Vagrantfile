@@ -17,5 +17,7 @@ Vagrant.configure(2) do |config|
       vb.memory = "1024"
     end
   end
+  config.vm.synced_folder ".", "/vagrant"
+  config.vm.synced_folder ".", "/vagrant/roles/suricata"
   config.vm.provision :shell, path: "vagrant_provision.sh"
 end
