@@ -74,6 +74,12 @@ default-log-dir: {{ suricata_log_dir }}
 default-log-dir: /var/log/suricata/
 {% endif %}
 
+# global stats configuration
+stats:
+  enabled: yes
+  interval: 8
+  decoder-events: true
+
 # Unix command socket can be used to pass commands to suricata.
 # An external tool can then connect to get information from suricata
 # or trigger some modifications of the engine. Set enabled to yes
