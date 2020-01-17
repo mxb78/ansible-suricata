@@ -5,13 +5,10 @@
     state: present
   when: ansible_distribution == "Ubuntu"
 
-- name: installing packages 
+- name: installing packages
   package:
     name: "{{ item }}"
     state: present
   with_items:
     - ethtool
     - suricata
-    - pulledpork
-    - PyYAML 
-
