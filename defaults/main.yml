@@ -94,7 +94,6 @@ suricata_interfaces:  #define the interfaces on your suricata host and define if
 suricata_listen_mode: af-packet  #pcap, nfqueue or af-packet
 suricata_log_dir: /var/log/suricata/
 suricata_nfqueue: 0  #Queue number to listen on (for nfqueue mode)
-suricata_oinkmaster_rules_url: http://rules.emergingthreats.net/open/suricata/emerging.rules.tar.gz
 suricata_outputs:
   - name: fast
     enabled: "yes"
@@ -121,17 +120,6 @@ suricata_outputs:
       - name: ssh
       - name: smtp
       - name: flow
-  - name: unified2-alert
-    enabled: "yes"
-    filename: unified2.alert
-    limit: 32mb  # File size limit.  Can be specified in kb, mb, gb.
-    xff:
-      - var: enabled
-        val: "no"
-      - var: mode
-        val: extra-data
-      - var: header
-        val: X-Forwarded-For
   - name: http-log
     enabled: "yes"
     filename: http.log
@@ -163,10 +151,6 @@ suricata_outputs:
     profile: suricata
     log_packet_content: "no"
     log_packet_header: "yes"
-  - name: stats
-    enabled: "yes"
-    filename: stats.log
-    interval: 8
   - name: syslog
     enabled: "no"
     facility: local5
@@ -200,13 +184,11 @@ suricata_rules:
   - app-layer-events.rules
   - decoder-events.rules
   - dhcp-events.rules
-  - dnp3-events.rules
   - dns-events.rules
   - files.rules
   - http-events.rules
   - ipsec-events.rules
   - kerberos-events.rules
-  - modbus-events.rules
   - nfs-events.rules
   - ntp-events.rules
   - smb-events.rules
