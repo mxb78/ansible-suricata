@@ -26,5 +26,14 @@
     mode: 0644
   notify: restart suricata
 
+- name: remove rules for disabled protocols
+  file:
+    path: "{{item}}"
+    state: absent
+  with_items:
+    - /etc/suricata/rules/dnp3-events.rules
+    - /etc/suricata/rules/modbus-events.rules
+
 - name: run suricata-update
+  become: true
   shell: suricata-update
