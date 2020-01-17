@@ -7,5 +7,4 @@ elif [ -f /etc/redhat-release ]; then
   yum install -y net-tools git python3-pip python3-devel
 fi
 sudo pip3 install ansible
-sudo ansible-galaxy install -r /vagrant/requirements.yml -f
 /usr/local/bin/ansible-playbook -i "localhost," -c local /vagrant/playbook.yml
