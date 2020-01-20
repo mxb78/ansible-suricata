@@ -1,0 +1,16 @@
+*.pyc
+*.pyo
+/.idea/
+*.iml
+.nfs*
+.settings
+#intellij phyton dir
+/venv/
+# vim swap files (.swp, .swo and so on)
+*.sw[a-p]
+
+.vagrant
+Vagrantfile~
+.project
+.vscode
+*.log
