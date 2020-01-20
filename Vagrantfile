@@ -7,8 +7,8 @@
 # you're doing.
 Vagrant.configure(2) do |config|
   config.vm.define "suricata" do |suricata|
-    suricata.vm.box = "ubuntu/xenial64"
-    #suricata.vm.box = "centos/7"
+    #suricata.vm.box = "ubuntu/xenial64"
+    suricata.vm.box = "centos/7"
     suricata.vm.hostname = "suricata"
 
     suricata.vm.network :private_network, ip: "192.168.202.201"
@@ -17,7 +17,12 @@ Vagrant.configure(2) do |config|
       vb.memory = "1024"
     end
   end
-  config.vm.synced_folder ".", "/vagrant"
-  config.vm.synced_folder ".", "/vagrant/roles/suricata"
+
+  config.vm.synced_folder ".", "/vagrant", type: "rsync",
+    rsync__exclude: ".git/"
+
+  config.vm.synced_folder ".", "/vagrant/roles/suricata", type: "rsync",
+    rsync__exclude: ".git/"
+
   config.vm.provision :shell, path: "vagrant_provision.sh"
 end

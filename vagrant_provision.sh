@@ -2,7 +2,7 @@
 if [ -f /etc/debian_version ]; then
   sudo apt-get update
   sudo apt-get install -y git python3-pip python3-dev
-elif [ -f /etc/redhat-release ]; then
+elif [ -f /etc/centos-release ]; then
   yum install -y epel-release
   yum install -y net-tools git python3-pip python3-devel
 fi

@@ -57,7 +57,7 @@ suricata_flow_timeouts:
     established: 300
     emergency_new: 10
     emergency_established: 100
-suricata_host_mode: auto  #defines surica operating mode...Options are auto, router (IPS-Mode) or sniffer-only (IDS-Mode)
+suricata_host_mode: sniffer-only  #defines surica operating mode...Options are auto, router (IPS-Mode) or sniffer-only (IDS-Mode)
 #    suricata_include_files:  #Files included here will be handled as if they were inlined in the configuration file.
 #        - include1.yaml
 #        - include2.yaml
@@ -151,6 +151,10 @@ suricata_outputs:
     profile: suricata
     log_packet_content: "no"
     log_packet_header: "yes"
+  - name: stats
+    enabled: "yes"
+    filename: stats.log
+    interval: 8
   - name: syslog
     enabled: "no"
     facility: local5
@@ -183,7 +187,7 @@ suricata_reference_config_file: /etc/suricata/reference.config
 suricata_rules:
   - app-layer-events.rules
   - decoder-events.rules
-  - dhcp-events.rules
+  #- dhcp-events.rules
   - dns-events.rules
   - files.rules
   - http-events.rules

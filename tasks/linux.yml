@@ -5,6 +5,14 @@
     state: present
   when: ansible_distribution == "Ubuntu"
 
+- name: redhat | installing extra packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - PyYAML
+  when: ansible_distribution == "CentOS"
+
 - name: installing packages
   package:
     name: "{{ item }}"
