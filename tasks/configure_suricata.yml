@@ -6,7 +6,6 @@
     owner: root
     group: root
     mode: 0644
-  notify: restart suricata
 
 - name: configure_suricata | suricata_rules.yaml
   template:
@@ -15,7 +14,6 @@
     owner: root
     group: root
     mode: 0644
-  notify: restart suricata
 
 - name: configure_suricata | suricata_outputs.yaml
   template:
@@ -24,7 +22,14 @@
     owner: root
     group: root
     mode: 0644
-  notify: restart suricata
+
+- name: configure_suricata | update.yaml
+  template:
+    src: "etc/suricata/update.yaml.j2"
+    dest: "/etc/suricata/update.yaml"
+    owner: root
+    group: root
+    mode: 0644
 
 - name: configure_suricata | suricata.yaml
   template:
@@ -33,7 +38,6 @@
     owner: root
     group: root
     mode: 0644
-  notify: restart suricata
 
 - name: configure_suricata | configuring suricata suppression list
   template:
@@ -42,7 +46,6 @@
     owner: "root"
     group: "root"
     mode: 0644
-  notify: restart suricata
 
 - name: remove rules for disabled protocols
   file:
@@ -52,6 +55,12 @@
     - /etc/suricata/rules/dnp3-events.rules
     - /etc/suricata/rules/modbus-events.rules
 
+- name: start suricata
+  service:
+    name: suricata
+    state: started
+
 - name: run suricata-update
   become: true
   shell: suricata-update
+  notify: restart suricata

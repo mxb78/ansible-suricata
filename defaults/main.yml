@@ -179,26 +179,8 @@ suricata_pfring_interfaces:
     threads: 1
     cluster_id: 99
     cluster_type: cluster_flow
-  - int: eth1
-    threads: 1
-    cluster_id: 93
-    cluster_type: cluster_flow
 suricata_reference_config_file: /etc/suricata/reference.config
-suricata_rules:
-  - app-layer-events.rules
-  - decoder-events.rules
-  #- dhcp-events.rules
-  - dns-events.rules
-  - files.rules
-  - http-events.rules
-  - ipsec-events.rules
-  - kerberos-events.rules
-  - nfs-events.rules
-  - ntp-events.rules
-  - smb-events.rules
-  - smtp-events.rules
-  - stream-events.rules
-  - tls-events.rules
+
 suricata_run_initd: 'yes'  #set to yes to start the server in the init.d script
 suricata_suppress_list:  #Defines a list of alerts to suppress
   - gen_id: 1
