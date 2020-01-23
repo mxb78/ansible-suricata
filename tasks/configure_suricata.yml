@@ -8,7 +8,25 @@
     mode: 0644
   notify: restart suricata
 
-- name: configure_suricata | configuring suricata
+- name: configure_suricata | suricata_rules.yaml
+  template:
+    src: "etc/suricata/suricata_rules.yaml.j2"
+    dest: "/etc/suricata/suricata_rules.yaml"
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart suricata
+
+- name: configure_suricata | suricata_outputs.yaml
+  template:
+    src: "etc/suricata/suricata_outputs.yaml.j2"
+    dest: "/etc/suricata/suricata_outputs.yaml"
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart suricata
+
+- name: configure_suricata | suricata.yaml
   template:
     src: "etc/suricata/suricata.yaml.j2"
     dest: "{{ suricata_config_file }}"
