@@ -55,12 +55,23 @@
     - /etc/suricata/rules/dnp3-events.rules
     - /etc/suricata/rules/modbus-events.rules
 
-- name: start suricata
-  service:
-    name: suricata
-    state: started
+- name: update suricata sources
+  shell: suricata-update update-sources
+
+- name: enable suricata rules
+  shell: "suricata-update enable-source {{item}}"
+  with_items:
+    - "oisf/trafficid"
+    - "et/open"
+    - "ptresearch/attackdetection"
+    - "sslbl/ssl-fp-blacklist"
 
 - name: run suricata-update
   become: true
   shell: suricata-update
   notify: restart suricata
+
+- name: start suricata
+  service:
+    name: suricata
+    state: started
