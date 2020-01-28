@@ -31,7 +31,7 @@ suricata_af_packet_interfaces:
 suricata_classification_file: /etc/suricata/classification.config
 suricata_config_file: /etc/suricata/suricata.yaml
 suricata_config_outputs: true
-suricata_default_rule_path: /etc/suricata/rules
+suricata_default_rule_path: /var/lib/suricata/rules
 suricata_flow_timeouts:
   - name: default
     new: 30
